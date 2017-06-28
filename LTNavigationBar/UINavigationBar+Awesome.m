@@ -27,11 +27,13 @@ static char overlayKey;
 - (void)lt_setBackgroundColor:(UIColor *)backgroundColor
 {
     if (!self.overlay) {
+		
+		UIView *container = [self.subviews firstObject];
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + 20)];
+        self.overlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(container.bounds), CGRectGetHeight(container.bounds))];
         self.overlay.userInteractionEnabled = NO;
-        self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight`
-        [[self.subviews firstObject] insertSubview:self.overlay atIndex:0];
+        self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth; // Should not set `UIViewAutoresizingFlexibleHeight`
+        [container insertSubview:self.overlay atIndex:0];
     }
     self.overlay.backgroundColor = backgroundColor;
 }
