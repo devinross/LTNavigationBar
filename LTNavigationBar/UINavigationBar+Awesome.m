@@ -26,7 +26,8 @@ static char overlayKey;
 
 - (void)lt_setBackgroundColor:(UIColor *)backgroundColor
 {
-    if (!self.overlay) {
+	[self layoutSubviews];
+    if (!self.overlay && self.subviews.count > 0) {
 		
 		UIView *container = [self.subviews firstObject];
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
